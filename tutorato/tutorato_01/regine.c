@@ -12,7 +12,7 @@ main(){
     if(r2==r1){
         printf("Le regine sono sulla stessa riga\n");
     }  
-    r2 += 1;
+
     if(c2==c1){
         printf("Le regine sono sulla stessa colonna\n");
     }
