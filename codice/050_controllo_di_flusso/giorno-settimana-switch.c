@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 main() {
-  int jd = 1234567;
+  int jd = 123456;
 
   switch (jd % 7) {
     case 0: printf("Lunedi`\n"); break;
