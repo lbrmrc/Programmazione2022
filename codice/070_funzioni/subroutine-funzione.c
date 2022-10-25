@@ -6,7 +6,6 @@ logo() {
   printf("###############\n");
 }
 
-
 main() {
   int scelta;
 
