@@ -1,12 +1,12 @@
 #include <stdio.h>
 
-logo() {
+void logo(void) {
   printf("###############\n");
   printf("#   Rubrica   #\n");
   printf("###############\n");
 }
 
-main() {
+int main(void) {
   int scelta;
 
   logo();
@@ -19,4 +19,5 @@ main() {
   printf("Chiamata del contatto %d in corso\n", scelta);
 
   printf("Fine\n");
+  return 0;
 }

@@ -8,7 +8,7 @@ int giorno_giuliano(int g, int m, int a) {
   return N1 + N2 - N3 + g - 32075;
 }
 
-main() {
+int main() {
   int G1, M1, A1;
   int G2, M2, A2;
   int JD1, JD2;
@@ -17,4 +17,5 @@ main() {
   printf("Seconda data?\n"); scanf("%d%d%d", &G2, &M2, &A2);
   JD2 = giorno_giuliano(G2, M2, A2);
   printf("La differenza e` %d\n", JD2 - JD1);
+  return 0;
 }
