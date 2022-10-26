@@ -1,16 +1,13 @@
 #include <stdio.h>
 
 int valore_assoluto(int n) {
-  int risultato;  // sarà il valore di ritorno
   if (n < 0)
-    risultato = -n;
-  else
-    risultato = n;
-  return risultato;
+    n = -n;
+  return n;
 }
 
 int main() {
   int a;
   scanf("%d", &a);
-  printf("%d\n", valore_assoluto(a));
+  printf("|%d| = %d\n", a, valore_assoluto(a));
 }
