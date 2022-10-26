@@ -2,8 +2,9 @@
 
 int valore_assoluto(int n) {
   if (n < 0)
-    n = -n;
-  return n;
+    return -n;
+  else
+    return n;
 }
 
 int main() {
