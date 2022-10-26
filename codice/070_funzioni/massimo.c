@@ -5,7 +5,7 @@ int massimo(int a, int b) {
     return a;
   else
     return b;
-  // return m > n ? m : n;
+  // return a > b ? a : b;
 }
 
 int main() {
