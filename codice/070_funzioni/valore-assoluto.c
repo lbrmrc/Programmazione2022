@@ -1,10 +1,7 @@
 #include <stdio.h>
 
 int valore_assoluto(int n) {
-  if (n < 0)
-    return -n;
-  else
-    return n;
+  return n < 0 ? -n : n;
 }
 
 int main() {
