@@ -1,19 +1,20 @@
 #include <math.h>
 #include <stdio.h>
 
-// ... media ...
+float media(float y, float z) {
+  return (y + z) / 2;
+}
 
-float radq (float a) {
-  float x; // accumulatore
+float radq(float a) {
+  float x;  // accumulatore
   x = 1.0;
   while (fabsf(x * x - a) / a > 1e-5)
-    x = (x + a / x) / 2;
+    x = media(x, a / x);  // media
   return x;
 }
 
-
 int main(void) {
-  float a, x;
+  float a;
   printf("Digita un numero\n");
   scanf("%f", &a);
   if (a <= 0) {
