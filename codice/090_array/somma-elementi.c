@@ -9,4 +9,6 @@ main() {
   s = 0;
   for (i = 0; i < DIM; i++)
     s = s + a[i];
+    
+  printf("La somma e` %d\n", s);
 }
