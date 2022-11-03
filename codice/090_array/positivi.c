@@ -11,4 +11,6 @@ main() {
       b[dl] = a[i];
       dl++;
     }
+  for (i = 0; i < dl; i++)
+    printf("%d\n", b[i]);
 }
