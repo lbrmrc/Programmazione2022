@@ -9,6 +9,7 @@ int main() {
   // s1 = "Bologna" s2 = "Ferrara"
 
   i = 0;
+
   dif = 0;
   while (dif == 0 && (s1[i] != '\0' || s2[i] != '\0' )) {
     dif = s1[i] - s2[i];
