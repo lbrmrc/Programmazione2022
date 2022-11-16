@@ -22,8 +22,9 @@ int main() {
   scanf("%s", s);
   i = 0;
   do {
-    printf("%c\n", maiuscola(s[i]));
+    printf("%c", maiuscola(s[i]));
     i++;
   } while (s[i] != '\0');
+  printf("\n");
   return 0;
 }
