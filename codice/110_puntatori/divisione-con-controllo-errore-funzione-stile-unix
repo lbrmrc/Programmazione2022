@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int divisione(int dividendo, int divisore, int* pq, int* pr) {
+  if (divisore != 0) {
+    *pq = dividendo / divisore;
+    *pr = dividendo % divisore;
+    return 0;
+  } else {
+    return 1;
+  }
+}
+
+int main(void) {
+  int q, r;
+  int dividendo, divisore;
+  scanf("%d%d", &dividendo, &divisore);
+  if (divisione(dividendo, divisore, &q, &r) == 0)
+    printf("%d, %d\n", q, r);
+  else
+    printf("Errore\n");
+  return 0;
+}
