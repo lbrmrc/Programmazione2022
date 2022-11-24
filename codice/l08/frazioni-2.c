@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef struct {
   int num;
@@ -31,6 +32,10 @@ Frazione semplifica(Frazione f) {
 
 Frazione frazione(int n, int d) {
   Frazione f;
+  if (d == 0){
+    printf("Errore: divisione per 0\n");
+    exit(1);
+  }
   if (d < 0) {
     n = -n;
     d = -d;
