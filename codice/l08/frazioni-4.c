@@ -45,8 +45,9 @@ int frazione(int n, int d, Frazione* pf) {
   return 0;
 }
 
-int somma(Frazione *pf1, Frazione *pf2, Frazione *pf) {
-  return frazione(pf1->num * pf2->den + pf1->den * pf2->num, pf1->den * pf2->den, pf);
+int somma(Frazione* pf1, Frazione* pf2, Frazione* pf) {
+  return frazione(pf1->num * pf2->den + pf1->den * pf2->num,
+                  pf1->den * pf2->den, pf);
 }
 
 // Frazione sottrazione(Frazione f1, Frazione f2) {
@@ -76,14 +77,17 @@ void stampa_frazionaria(Frazione* pf) {
 // }
 
 int main() {
-  Frazione a, b, d;
+  Frazione a, b, c, d;
+  leggi(&a);
+  leggi(&b);
+  somma(&a, &b, &c);
+  stampa_frazionaria(&c); printf("\n");
   if (leggi(&d) == 0)
     stampa_frazionaria(&d);
-    else
-    {
-        printf("Errore: denominatore nullo\n");
-        exit(1);
-    }
+  else {
+    printf("Errore: denominatore nullo\n");
+    exit(1);
+  }
   //   a = leggi();
   //   b = leggi();
   //   c = somma(a, b);
