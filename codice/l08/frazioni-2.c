@@ -31,6 +31,10 @@ Frazione semplifica(Frazione f) {
 
 Frazione frazione(int n, int d) {
   Frazione f;
+  if (d < 0) {
+    n = -n;
+    d = -d;
+  }
   f.num = n;
   f.den = d;
   return semplifica(f);
