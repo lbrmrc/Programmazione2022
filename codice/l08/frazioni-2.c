@@ -77,7 +77,7 @@ void stampa_decimale(Frazione f) {
 }
 
 int main() {
-  Frazione a, b, c;
+  Frazione a, b, c, d;
   a = leggi();
   b = leggi();
   c = somma(a, b);
