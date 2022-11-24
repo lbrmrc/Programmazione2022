@@ -45,9 +45,9 @@ int frazione(int n, int d, Frazione* pf) {
   return 0;
 }
 
-// Frazione somma(Frazione f1, Frazione f2) {
-//   return frazione(f1.num * f2.den + f1.den * f2.num, f1.den * f2.den);
-// }
+int somma(Frazione *pf1, Frazione *pf2, Frazione *pf) {
+  return frazione(pf1->num * pf2->den + pf1->den * pf2->num, pf1->den * pf2->den, pf);
+}
 
 // Frazione sottrazione(Frazione f1, Frazione f2) {
 //   return frazione(f1.num * f2.den - f1.den * f2.num, f1.den * f2.den);
@@ -76,7 +76,7 @@ void stampa_frazionaria(Frazione* pf) {
 // }
 
 int main() {
-  Frazione d;
+  Frazione a, b, d;
   if (leggi(&d) == 0)
     stampa_frazionaria(&d);
     else
