@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <math.h>
 
-#define PIGRECA 3.14159
-
 typedef struct {
   float lato;
 } DatiQuadrato;
