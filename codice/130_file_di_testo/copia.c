@@ -12,7 +12,7 @@ int main() {
   }
 
   do {
-    scanf("%s", s);
+    fscanf(stdin,"%s", s); // uguale a scanf("%s", s);
     fprintf(pf, "%s\n", s);
   } while (strcmp(s, "FINE") != 0);
 
