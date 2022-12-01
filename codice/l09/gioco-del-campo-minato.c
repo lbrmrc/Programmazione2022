@@ -5,6 +5,15 @@
 #define NCOLONNE 6
 #define PROBMINA 0.2
 
+typedef struct {
+  int minata;
+  int coperta;
+} Casella;
+
+typedef struct {
+  Casella griglia[NRIGHE][NCOLONNE];
+} Campo;
+
 int mineAdiacenti(int g[NRIGHE][NCOLONNE], int i, int j) {
   int cont = 0;
   //   int m, n;
@@ -29,11 +38,14 @@ float rnd_float(float a, float b) {
   return a + (b - a) * (float)rand() / RAND_MAX;
 }
 
-void inizializza(int g[NRIGHE][NCOLONNE]) {
+void inizializza(Campo* pc) {
   int i, j;
+
   for (i = 0; i < NRIGHE; i++)
-    for (j = 0; j < NCOLONNE; j++)
-      g[i][j] = rnd_float(0.0, 1.0) < PROBMINA;
+    for (j = 0; j < NCOLONNE; j++) {
+      pc->griglia[i][j].minata = rnd_float(0.0, 1.0) < PROBMINA;
+      pc->griglia[i][j].coperta = 1;
+    }
 }
 
 void bordo_orizzontale(char c) {
@@ -43,7 +55,7 @@ void bordo_orizzontale(char c) {
   printf("\n");
 }
 
-void stampa(int g[NRIGHE][NCOLONNE]) {
+void stampa(Campo *pc) {
   int i, j;
   bordo_orizzontale('-');
   for (i = 0; i < NRIGHE; i++) {
@@ -64,9 +76,8 @@ void stampa(int g[NRIGHE][NCOLONNE]) {
 }
 
 int main() {
-  int griglia[NRIGHE][NCOLONNE];
-  // griglia[i][j] vale 1 se c'è una bomba, 0
-  inizializza(griglia);
-  stampa(griglia);
+  Campo campo;
+  inizializza(&campo);
+  stampa(campo);
   return 0;
 }
