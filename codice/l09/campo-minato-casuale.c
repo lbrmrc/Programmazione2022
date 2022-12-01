@@ -1,5 +1,5 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #define NRIGHE 4
 #define NCOLONNE 6
@@ -13,22 +13,26 @@ void inizializza(int g[NRIGHE][NCOLONNE]) {
   int i, j;
   for (i = 0; i < NRIGHE; i++)
     for (j = 0; j < NCOLONNE; j++)
-      if (rnd_float(0.0, 1.0) < PROBMINA)
-        g[i][j] = 1;
-      else
-        g[i][j] = 0;
+      g[i][j] = rnd_float(0.0, 1.0) < PROBMINA;
+}
+
+void bordo_orizzontale(char c) {
+  int j;
+  for (j = 0; j < NCOLONNE + 2; j++)
+    printf("%c", c);
+  printf("\n");
 }
 
 void stampa(int g[NRIGHE][NCOLONNE]) {
   int i, j;
+  bordo_orizzontale('-');
   for (i = 0; i < NRIGHE; i++) {
+    printf("|");
     for (j = 0; j < NCOLONNE; j++)
-      if (g[i][j] == 1)
-        printf("*");
-      else
-        printf(" ");
-    printf("\n");
+      printf("%c", g[i][j] ? '*' : ' ');
+    printf("|\n");
   }
+  bordo_orizzontale('-');
 }
 
 int main() {
