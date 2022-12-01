@@ -14,6 +14,13 @@ typedef struct {
   Casella griglia[NRIGHE][NCOLONNE];
 } Campo;
 
+typedef struct {
+  int riga;
+  int colonna;
+} Mossa;
+
+typedef enum { InCorso, Vinto, Perso } Stato;
+
 int mineAdiacenti(Campo* pc, int i, int j) {
   int cont = 0;
   //   int m, n;
@@ -49,8 +56,24 @@ void inizializza(Campo* pc) {
     }
 }
 
+void scopri(Campo* pc) {
+  int i, j;
+  for (i = 0; i < NRIGHE; i++)
+    for (j = 0; j < NCOLONNE; j++)
+      pc->griglia[i][j].coperta = 0;
+}
+
+void stampa_indici_colonna() {
+  int i;
+  printf("   ");
+  for (i = 0; i < NCOLONNE; i++)
+    printf("%c", 'a' + i);
+  printf("\n");
+}
+
 void bordo_orizzontale(char c) {
   int j;
+  printf("  ");
   for (j = 0; j < NCOLONNE + 2; j++)
     printf("%c", c);
   printf("\n");
@@ -58,8 +81,10 @@ void bordo_orizzontale(char c) {
 
 void stampa(Campo* pc) {
   int i, j;
+  stampa_indici_colonna();
   bordo_orizzontale('-');
   for (i = 0; i < NRIGHE; i++) {
+    printf("%2d", i + 1);
     printf("|");
     for (j = 0; j < NCOLONNE; j++)
       if (pc->griglia[i][j].coperta)
@@ -78,9 +103,50 @@ void stampa(Campo* pc) {
   bordo_orizzontale('-');
 }
 
+void esegui(Campo* pc, Mossa* pm) {
+  pc->griglia[pm->riga][pm->colonna].coperta = 0;
+}
+
+Stato stato(Campo* pc) {
+  int i, j;
+  for (i = 0; i < NRIGHE; i++)
+    for (j = 0; j < NCOLONNE; j++)
+      if (pc->griglia[i][j].minata && !pc->griglia[i][j].coperta)
+        return Perso;
+  for (i = 0; i < NRIGHE; i++)
+    for (j = 0; j < NCOLONNE; j++)
+      if (!pc->griglia[i][j].minata && pc->griglia[i][j].coperta)
+        return InCorso;
+  return Vinto;
+}
+
+void leggiMossa(Mossa* pm) {
+  char s[10];
+  scanf("%s", s);
+  pm->colonna = s[0] - 'a';
+  pm->riga = s[1] - '1';
+}
+
+Stato turno(Campo* pc) {
+  Mossa m;
+  stampa(pc);
+  leggiMossa(&m);
+  esegui(pc, &m);
+  return stato(pc);
+}
+
 int main() {
   Campo campo;
+  Stato s = InCorso;
   inizializza(&campo);
+  do {
+    s = turno(&campo);
+  } while (s == InCorso);
+  if (s == Vinto)
+    printf("Hai vinto\n");
+  else
+    printf("Hai perso\n");
+  scopri(&campo);
   stampa(&campo);
   return 0;
 }
