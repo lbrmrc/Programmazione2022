@@ -14,7 +14,7 @@ typedef struct {
   Casella griglia[NRIGHE][NCOLONNE];
 } Campo;
 
-int mineAdiacenti(int g[NRIGHE][NCOLONNE], int i, int j) {
+int mineAdiacenti(Campo* pc, int i, int j) {
   int cont = 0;
   //   int m, n;
   //   for (m = i - 1; m <= i + 1; i++)
@@ -23,14 +23,15 @@ int mineAdiacenti(int g[NRIGHE][NCOLONNE], int i, int j) {
   //         if (n >= 0 && n < NCOLONNE)
   //           if (m != i || n != j)
   //             cont += g[m][n];
-  cont += i >= 1 && j >= 1 && g[i - 1][j - 1];
-  cont += i >= 1 && g[i - 1][j];
-  cont += i >= 1 && j < NCOLONNE - 1 && g[i - 1][j + 1];
-  cont += j >= 1 && g[i][j - 1];
-  cont += j < NCOLONNE - 1 && g[i][j + 1];
-  cont += i < NRIGHE - 1 && j >= 1 && g[i + 1][j - 1];
-  cont += i < NRIGHE - 1 && g[i + 1][j];
-  cont += i < NRIGHE - 1 && j < NCOLONNE - 1 && g[i + 1][j + 1];
+  cont += i >= 1 && j >= 1 && pc->griglia[i - 1][j - 1].minata;
+  cont += i >= 1 && pc->griglia[i - 1][j].minata;
+  cont += i >= 1 && j < NCOLONNE - 1 && pc->griglia[i - 1][j + 1].minata;
+  cont += j >= 1 && pc->griglia[i][j - 1].minata;
+  cont += j < NCOLONNE - 1 && pc->griglia[i][j + 1].minata;
+  cont += i < NRIGHE - 1 && j >= 1 && pc->griglia[i + 1][j - 1].minata;
+  cont += i < NRIGHE - 1 && pc->griglia[i + 1][j].minata;
+  cont +=
+      i < NRIGHE - 1 && j < NCOLONNE - 1 && pc->griglia[i + 1][j + 1].minata;
   return cont;
 }
 
@@ -55,16 +56,18 @@ void bordo_orizzontale(char c) {
   printf("\n");
 }
 
-void stampa(Campo *pc) {
+void stampa(Campo* pc) {
   int i, j;
   bordo_orizzontale('-');
   for (i = 0; i < NRIGHE; i++) {
     printf("|");
     for (j = 0; j < NCOLONNE; j++)
-      if (g[i][j])
+      if (pc->griglia[i][j].coperta)
+        printf("#");
+      else if (pc->griglia[i][j].minata)
         printf("*");
       else {
-        int m = mineAdiacenti(g, i, j);
+        int m = mineAdiacenti(pc, i, j);
         if (m > 0)
           printf("%d", m);
         else
@@ -78,6 +81,6 @@ void stampa(Campo *pc) {
 int main() {
   Campo campo;
   inizializza(&campo);
-  stampa(campo);
+  stampa(&campo);
   return 0;
 }
