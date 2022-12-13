@@ -20,7 +20,10 @@ void triangolo(Figura* pf, float a, float b, float c) {
   pf->dati_figura.datiTriangolo[2] = c;
 }
 
-
+void cerchio(Figura* pf, float r) {
+  pf->tipo_figura = Cerchio;
+  pf->dati_figura.datiCerchio.raggio = r;
+}
 
 float perimetro(Figura* pf) {
   switch (pf->tipo_figura) {
@@ -34,6 +37,8 @@ float perimetro(Figura* pf) {
       return pf->dati_figura.datiTriangolo[0] +
              pf->dati_figura.datiTriangolo[1] +
              pf->dati_figura.datiTriangolo[2];
+    case Cerchio:
+      return 2 * M_PI * pf->dati_figura.datiCerchio.raggio;
   }
 }
 
@@ -51,5 +56,8 @@ float area(Figura* pf) {
                   (p - pf->dati_figura.datiTriangolo[1]) *
                   (p - pf->dati_figura.datiTriangolo[2]));
     }
+    case Cerchio:
+      return M_PI * pf->dati_figura.datiCerchio.raggio *
+             pf->dati_figura.datiCerchio.raggio;
   }
 }
