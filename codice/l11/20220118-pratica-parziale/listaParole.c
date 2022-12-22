@@ -1,5 +1,5 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include "listaParole.h"
@@ -33,6 +33,22 @@ void aggiorna(Lista* pl, char* s) {
     d.frequenza = 1;
     // lo inserisco in testa ad *pl
     insTesta(pl, d);
+  }
+}
+
+void elimTesta(Lista* pl) {
+  Nodo* aux = *pl;
+  *pl = (*pl)->next;
+  free(aux);
+}
+
+void elimina_parola(Lista* pl, char* s) {
+  while (*pl) {
+    if (strcmp((*pl)->dato.parola, s) == 0) {
+      elimTesta(pl);
+      return;
+    } else
+      pl = &(*pl)->next;
   }
 }
 

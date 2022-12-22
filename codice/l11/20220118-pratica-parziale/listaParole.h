@@ -13,3 +13,4 @@ typedef Nodo* Lista;
 void nuova_lista(Lista *pl);
 void aggiorna(Lista *pl, char *s);
 void stampa(Lista l);
+void elimina_parola(Lista* pl, char* s);

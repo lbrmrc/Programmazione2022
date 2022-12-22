@@ -9,7 +9,7 @@ int main(int argc, char* argv[]) {
   Lista l;
   char parola[31];
 
-  if (argc != 2) {
+  if (argc < 2) {
     printf("Utilizzo: %s nome_file_testo\n", argv[0]);
     exit(1);
   }
@@ -22,10 +22,26 @@ int main(int argc, char* argv[]) {
 
   nuova_lista(&l);
   // per ogni parola del file
-  while (fscanf(pf, "%s", parola) == 1)
-    // aggiorno la lista
+  // rendo la parola minuscola
+  while (fscanf(pf, "%s", parola) == 1) {
+    int i = 0;
+    while (parola[i]) {
+      if (parola[i] >= 'A' && parola[i] <= 'Z')
+        parola[i] = parola[i] + 'a' - 'A';
+      i++;
+    }
     aggiorna(&l, parola);
+  }
+
+  // aggiorno la lista
   fclose(pf);
+
+  // elimino le parole escluse
+  {
+    int i;
+    for (i = 2; i < argc; i++)
+      elimina_parola(&l, argv[i]);
+  }
 
   // stampare la lista delle frequenze
   stampa(l);
