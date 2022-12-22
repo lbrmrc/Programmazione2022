@@ -48,7 +48,7 @@ int* list_to_array(Lista l) {
   }
   i = 0;
   while (l != NULL) {
-    p[i] = l->dato;
+    p[i] = l->dato; // oppure *(p+i) = l->dato;
     i++;
     l = l->next;
   }

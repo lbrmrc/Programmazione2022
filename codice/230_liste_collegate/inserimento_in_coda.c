@@ -27,19 +27,27 @@ void listaCasuale(Lista* pl, int numeroElementi) {
     insTesta(pl, 1 + rand() % 9);
 }
 
-void reverse(Lista l1, Lista* pl2) {
-  nuovaLista(pl2);
+Lista* ricerca(Lista* pl)  // restituisce l'indirizzo della lista in testa a cui
+// fare l'inserimento
+{
+  while (*pl != NULL)
+    // assegno a pl l'indirizzo della coda di *pl
+    pl = &(*pl)->next;
+  return pl;
+}
 
-  while (l1 != NULL) {
-    insTesta(pl2, l1->dato);
-    l1 = l1->next;
-  }
+void inserimentoCoda(Lista* pl, int d) {
+  // ricerca della lista in testa a cui inserire d
+  pl = ricerca(pl);
+  // inserimento di d in testa alla lista di indirizzo pl
+  insTesta(pl, d);
 }
 
 int main() {
-  Lista l1;
-  Lista l2;
-  listaCasuale(&l1, 5);
-  reverse(l1, &l2);
+  Lista l;
+  Lista* pl;
+  listaCasuale(&l, 3);
+
+  inserimentoCoda(&l, 5);
   return 0;
 }
