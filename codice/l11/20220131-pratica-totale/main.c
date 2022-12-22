@@ -24,7 +24,7 @@ int main(int argc, char* argv[]) {
   while (fread(&r, sizeof(Record), 1, pf) == 1)
     aggiorna(&l, r);
 
-  stampa(l);
+  stampa(insertionSort(l));
 
   return 0;
 }

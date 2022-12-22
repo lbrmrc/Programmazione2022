@@ -1,5 +1,5 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "listaEsami.h"
 
@@ -31,6 +31,31 @@ void aggiorna(Lista* pl, Record r) {
     (*pl)->dato.voto_pratico = r.voto;
   else
     (*pl)->dato.voto_teorico = r.voto;
+}
+
+int precede(Dato d1, Dato d2) {
+  if (((d1.voto_pratico < 12 || d1.voto_teorico < 6) &&
+       (d2.voto_pratico < 12 || d2.voto_teorico < 6)) ||
+      d1.voto_pratico + d1.voto_teorico == d2.voto_pratico + d2.voto_teorico)
+    return d1.matricola > d2.matricola;
+  else
+    return d1.voto_pratico + d1.voto_teorico >
+           d2.voto_pratico + d2.voto_teorico;
+}
+
+void insOrd(Lista* pl, Dato d) {
+  while (*pl != NULL && precede((*pl)->dato, d))
+    pl = &(*pl)->next;
+  insTesta(pl, d);
+}
+
+Lista insertionSort(Lista l) {
+  Lista l2;
+  while (l != NULL) {
+    insOrd(&l2, l->dato);
+    l = l->next;
+  }
+  return l2;
 }
 
 void stampa(Lista l) {

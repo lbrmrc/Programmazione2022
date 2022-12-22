@@ -20,3 +20,4 @@ typedef struct {
 void nuova_lista(Lista* pl);
 void aggiorna(Lista* pl, Record r);
 void stampa(Lista l);
+Lista insertionSort(Lista l);
