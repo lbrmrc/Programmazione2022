@@ -33,7 +33,7 @@ Lista insCoda1(Lista l, Dato d) {
     aux->next = NULL;
     return aux;
   } else {
-    insCoda1(l->next, d);
+    l->next = insCoda1(l->next, d);
     return l;
   };
 }
